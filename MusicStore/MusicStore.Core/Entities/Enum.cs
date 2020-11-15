@@ -1,18 +1,19 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IAggregateRoot.cs" company="">
+// <copyright file="Enum.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   Defines the IAggregateRoot type.
+//   Defines the AlbumType type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace MusicStore.Core.Interfaces
+namespace MusicStore.Core.Entities
 {
-    /// <summary>
-    /// The AggregateRoot interface.
-    /// </summary>
-    public interface IAggregateRoot
+    public enum AlbumType : short
     {
+        CD =1 ,
+        Vinyl = 2,
+        K7 = 3,
+        Digital = 4
     }
 }

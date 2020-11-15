@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace MusicStore.Domain.Entities
+namespace MusicStore.Core.Entities
 {
     using System;
 
     /// <summary>
     /// The album.
     /// </summary>
-    public class Album : BaseEntity, Iagrr
+    public class Album : BaseEntity
     {
         /// <summary>
         /// Gets or sets the name.

@@ -12,7 +12,7 @@ namespace MusicStore.Infra.Persistence.Configuration
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    using MusicStore.Domain.Entities;
+    using MusicStore.Core.Entities;
 
     /// <summary>
     /// The artist configuration.

@@ -15,17 +15,26 @@ namespace MusicStore.Infra.Persistence.Context
 
     using Microsoft.EntityFrameworkCore;
 
-    using MusicStore.Domain.Entities;
+    using MusicStore.Core.Entities;
 
     /// <summary>
     /// The application context.
     /// </summary>
     public class ApplicationContext : DbContext
     {
+
+        public DbSet<Person> Persons { get; set; }
+
+
         /// <summary>
         /// Gets or sets the artists.
         /// </summary>
         public DbSet<Artist> Artists { get; set; }
+
+        /// <summary>
+        /// Gets or sets the composers.
+        /// </summary>
+        public DbSet<Composer> Composers { get; set; }
 
         public DbSet<Album> Albuns { get; set; }
 

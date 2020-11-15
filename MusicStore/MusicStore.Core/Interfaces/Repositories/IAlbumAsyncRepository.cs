@@ -1,18 +1,20 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IAggregateRoot.cs" company="">
+// <copyright file="IAlbumAsyncRepository.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   Defines the IAggregateRoot type.
+//   The AlbumAsyncRepository interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace MusicStore.Core.Interfaces
+namespace MusicStore.Core.Interfaces.Repositories
 {
+    using MusicStore.Core.Entities;
+
     /// <summary>
-    /// The AggregateRoot interface.
+    /// The AlbumAsyncRepository interface.
     /// </summary>
-    public interface IAggregateRoot
+    public interface IAlbumAsyncRepository : IAsyncRepository<Album>
     {
     }
 }

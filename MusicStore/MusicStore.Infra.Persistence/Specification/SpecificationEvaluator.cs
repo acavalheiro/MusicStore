@@ -13,8 +13,8 @@ namespace MusicStore.Infra.Persistence.Specification
 
     using Microsoft.EntityFrameworkCore;
 
+    using MusicStore.Core.Entities;
     using MusicStore.Core.Interfaces;
-    using MusicStore.Domain.Entities;
 
     /// <summary>
     /// The specification evaluator.

@@ -9,12 +9,11 @@
 
 namespace MusicStore.Infra.Persistence.Configuration
 {
-    using System;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    using MusicStore.Domain.Entities;
+    using MusicStore.Core.Entities;
 
     /// <summary>
     /// The album configuration.
