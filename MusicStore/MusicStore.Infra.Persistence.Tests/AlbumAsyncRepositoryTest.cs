@@ -17,13 +17,14 @@ namespace MusicStore.Infra.Persistence.Tests
 
     using MusicStore.Core.Entities;
     using MusicStore.Core.Interfaces.Repositories;
+    using MusicStore.Core.Specifications;
     using MusicStore.Infra.Persistence.Context;
     using MusicStore.Infra.Persistence.Repositories;
 
     /// <summary>
     /// The artist async repository test.
     /// </summary>
-    public abstract class AlbumAsyncRepositoryTest
+    public abstract class ArtistAsyncRepositoryTest
     {
         /// <summary>
         /// Gets the context options.
@@ -36,7 +37,7 @@ namespace MusicStore.Infra.Persistence.Tests
         /// <param name="contextOptions">
         /// The context options.
         /// </param>
-        protected AlbumAsyncRepositoryTest(DbContextOptions<ApplicationContext> contextOptions)
+        protected ArtistAsyncRepositoryTest(DbContextOptions<ApplicationContext> contextOptions)
         {
             ContextOptions = contextOptions;
             
@@ -68,28 +69,15 @@ namespace MusicStore.Infra.Persistence.Tests
         }
 
         [Fact]
-        public async Task GetAllArtists()
+        public async Task GetArtist()
         {
-            using (var context = new ApplicationContext(ContextOptions))
+            await using (var context = new ApplicationContext(ContextOptions))
             {
                 IArtistAsyncRepository repository = new ArtistAsyncRepository(context);
 
-                var items = await repository.ListAllAsync();
+                var artist = await repository.FirstOrDefaultAsync(new ArtistFilterSpecification("Andre"));
                 
-                Assert.Equal(3, items.Count);
-            }
-        }
-
-        [Fact]
-        public async Task GetAllComposers()
-        {
-            using (var context = new ApplicationContext(ContextOptions))
-            {
-                var repository = new AsyncRepository<Person>(context);
-
-                var items = await repository.ListAllAsync();
-                
-                Assert.Equal(4, items.Count);
+                Assert.Equal("Andre", artist.Name);
             }
         }
     }

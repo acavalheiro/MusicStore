@@ -16,6 +16,12 @@ namespace MusicStore.Core.Entities
     /// </summary>
     public class Artist : Person
     {
+
+        protected Artist()
+        {
+
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Artist"/> class.
         /// </summary>

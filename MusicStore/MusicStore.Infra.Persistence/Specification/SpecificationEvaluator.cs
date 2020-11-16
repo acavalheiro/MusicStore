@@ -27,11 +27,13 @@ namespace MusicStore.Infra.Persistence.Specification
         {
             var query = inputQuery;
 
-            // modify the IQueryable using the specification's criteria expression
-            if (specification.Criteria != null)
+            if (specification.WhereExpressions.Any())
             {
-                query = query.Where(specification.Criteria);
+                var where = specification.WhereExpressions.Aggregate(
+                    query,
+                    (current, criteria) => current.Where(criteria));
             }
+
 
             // Includes all expression-based includes
             query = specification.Includes.Aggregate(query,

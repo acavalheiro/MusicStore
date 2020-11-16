@@ -22,7 +22,13 @@ namespace MusicStore.Core.Interfaces
     /// </typeparam>
     public interface ISpecification<T>
     {
-        Expression<Func<T, bool>> Criteria { get; }
+
+        /// <summary>
+        /// Gets the where expressions.
+        /// </summary>
+        IList<Expression<Func<T, bool>>> WhereExpressions { get; }
+
+
         List<Expression<Func<T, object>>> Includes { get; }
         List<string> IncludeStrings { get; }
 
@@ -30,15 +36,5 @@ namespace MusicStore.Core.Interfaces
         Expression<Func<T, object>> OrderByDescending { get; }
     }
 
-    /// <summary>
-    /// The Specification interface.
-    /// </summary>
-    /// <typeparam name="T">
-    /// </typeparam>
-    /// <typeparam name="TResult">
-    /// </typeparam>
-    public interface ISpecification<T, TResult> : ISpecification<T>
-    {
-        Expression<Func<T, TResult>>? Selector { get; }
-    }
+    
 }
