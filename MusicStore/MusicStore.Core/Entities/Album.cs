@@ -19,7 +19,9 @@ namespace MusicStore.Core.Entities
         /// <summary>
         /// Initializes a new instance of the <see cref="Album"/> class.
         /// </summary>
-        protected Album() {}
+        protected Album()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Album"/> class.
@@ -41,12 +43,12 @@ namespace MusicStore.Core.Entities
         }
 
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets the name.
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// Gets or sets the type.
+        /// Gets the type.
         /// </summary>
         public AlbumType AlbumType { get; }
 
@@ -56,7 +58,7 @@ namespace MusicStore.Core.Entities
         public Guid ArtistId {get; }
 
         /// <summary>
-        /// Gets or sets the artist.
+        /// Gets the artist.
         /// </summary>
         public virtual Artist Artist { get; private set; }
     }

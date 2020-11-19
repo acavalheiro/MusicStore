@@ -39,11 +39,11 @@ namespace MusicStore.Core.Entities
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Gets or sets the date of birth.
         /// </summary>
-        public DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; private set; }
     }
 }

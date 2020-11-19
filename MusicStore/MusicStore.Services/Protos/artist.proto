@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option csharp_namespace = "MusicStore.Services";
+
+package artist;
+
+service ArtistService {
+	// Sends a greeting
+	rpc ArtistListPaginate (ArtistListPaginatedRequest) returns (ArtistListPaginatedResponse);
+}
+
+// The request message containing the user's name.
+message ArtistListPaginatedRequest {
+	string name = 1;
+	int32 pageNumber = 2;
+	int32 pageSize = 3;
+
+}
+
+// The response message containing the greetings.
+message ArtistListPaginatedResponse {
+	repeated ArtistItem results = 1;
+	int32 totalItems = 2;
+}
+
+
+message ArtistItem {
+	string url = 1;
+	string title = 2;
+	repeated string snippets = 3;
+}

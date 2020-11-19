@@ -28,8 +28,50 @@ namespace MusicStore.Core.Specification
         public List<string> IncludeStrings { get; } = new List<string>();
         public Expression<Func<T, object>> OrderBy { get; private set; }
         public Expression<Func<T, object>> OrderByDescending { get; private set; }
+
+        /// <summary>
+        /// Gets the take.
+        /// </summary>
+        public int Take { get; private set; }
+
+        /// <summary>
+        /// Gets the skip.
+        /// </summary>
+        public int Skip { get; private set; }
+
+        /// <summary>
+        /// Gets a value indicating whether is paging enabled.
+        /// </summary>
+        public bool IsPagingEnabled { get; private set;}
+
+        /// <summary>
+        /// Gets the group by.
+        /// </summary>
         public Expression<Func<T, object>> GroupBy { get; private set; }
 
+        /// <summary>
+        /// The paginate.
+        /// </summary>
+        /// <param name="skip">
+        /// The skip.
+        /// </param>
+        /// <param name="take">
+        /// The take.
+        /// </param>
+        public void Paginate(int skip, int take)
+        {
+            this.IsPagingEnabled = true;
+            this.Skip = skip;
+            this.Take = take;
+
+        }
+
+        /// <summary>
+        /// The add where.
+        /// </summary>
+        /// <param name="where">
+        /// The where.
+        /// </param>
         public void AddWhere(Expression<Func<T, bool>> where)
         {
             this.WhereExpressions.Add(where);

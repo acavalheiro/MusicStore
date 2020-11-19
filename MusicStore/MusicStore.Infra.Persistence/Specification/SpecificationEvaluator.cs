@@ -53,6 +53,12 @@ namespace MusicStore.Infra.Persistence.Specification
                 query = query.OrderByDescending(specification.OrderByDescending);
             }
 
+            if (specification.IsPagingEnabled)
+            {
+                query = query.Skip(specification.Skip)
+                    .Take(specification.Take);
+            }
+
             return query;
         }
     }

@@ -28,4 +28,16 @@ namespace MusicStore.Core.Specifications
             this.AddWhere(i => i.Name.Contains(name));
         }
     }
+
+    /// <summary>
+    /// The artist filter pagination specification.
+    /// </summary>
+    public class ArtistFilterPaginationSpecification : ArtistFilterSpecification
+    {
+        public ArtistFilterPaginationSpecification(string name, int page, int pageSize)
+            : base(name)
+        {
+            this.Paginate(page * pageSize, pageSize);
+        }
+    }
 }

@@ -11,13 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "001 - Persistence", "001 - 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicStore.Infra.Persistence", "MusicStore.Infra.Persistence\MusicStore.Infra.Persistence.csproj", "{91FC88D4-1B12-43B1-B332-77FA96D70153}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EC4D6348-BD28-4BF4-A4AA-144A8802CD5B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicStore.Infra.Persistence.Tests", "MusicStore.Infra.Persistence.Tests\MusicStore.Infra.Persistence.Tests.csproj", "{7B3DE426-49E0-4E72-93E0-D918000EECDD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "002 - Business", "002 - Business", "{9D8B454B-D265-4231-BE1E-89DF879C463C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Business", "MusicStore.Business\MusicStore.Business.csproj", "{E7E18194-878A-400F-A9BC-2B001DAB39D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicStore.Business", "MusicStore.Business\MusicStore.Business.csproj", "{E7E18194-878A-400F-A9BC-2B001DAB39D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "999-Tests", "999-Tests", "{C62079B6-3EE5-49F3-AEE8-5E89DE86C166}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "003 - Services", "003 - Services", "{7C2B8047-4321-42B7-8528-5A4E344C9F80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Services", "MusicStore.Services\MusicStore.Services.csproj", "{A1E3C17A-3E78-471D-840A-C02D2413E0A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,15 +49,19 @@ Global
 		{E7E18194-878A-400F-A9BC-2B001DAB39D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7E18194-878A-400F-A9BC-2B001DAB39D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7E18194-878A-400F-A9BC-2B001DAB39D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1E3C17A-3E78-471D-840A-C02D2413E0A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E3C17A-3E78-471D-840A-C02D2413E0A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E3C17A-3E78-471D-840A-C02D2413E0A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E3C17A-3E78-471D-840A-C02D2413E0A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{91FC88D4-1B12-43B1-B332-77FA96D70153} = {443AD1EF-5EBA-4B36-A999-E527B2CB5E2E}
-		{EC4D6348-BD28-4BF4-A4AA-144A8802CD5B} = {443AD1EF-5EBA-4B36-A999-E527B2CB5E2E}
-		{7B3DE426-49E0-4E72-93E0-D918000EECDD} = {EC4D6348-BD28-4BF4-A4AA-144A8802CD5B}
+		{7B3DE426-49E0-4E72-93E0-D918000EECDD} = {C62079B6-3EE5-49F3-AEE8-5E89DE86C166}
 		{E7E18194-878A-400F-A9BC-2B001DAB39D1} = {9D8B454B-D265-4231-BE1E-89DF879C463C}
+		{A1E3C17A-3E78-471D-840A-C02D2413E0A9} = {7C2B8047-4321-42B7-8528-5A4E344C9F80}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCF3DAF0-CF55-4C1D-AF02-0F803394E957}
