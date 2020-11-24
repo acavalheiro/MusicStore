@@ -20,7 +20,7 @@
     {
         public IConfiguration Configuration { get; }
 
-         public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -39,11 +39,19 @@
 
             services.AddScoped<IArtistAsyncRepository, ArtistAsyncRepository>();
 
-            services.AddMediatR(Assembly.GetExecutingAssembly());  
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(ArtistFilterPaginatedQuery).Assembly); 
+            services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(ArtistFilterPaginatedQuery).Assembly);
 
             services.AddGrpc();
+
+            services.AddCors(o => o.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
+    }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,10 +64,14 @@
 
             app.UseRouting();
 
+            app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
+
+            app.UseCors();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GreeterService>();
-                endpoints.MapGrpcService<ArtistExtendedService>();
+                endpoints.MapGrpcService<ArtistExtendedService>().RequireCors("AllowAll");;
 
                 endpoints.MapGet("/", async context =>
                 {
