@@ -59,7 +59,7 @@ namespace MusicStore.Business.Queries.Handlers
 
             var totalItems = await this._artistAsyncRepository.CountAsync(new ArtistFilterSpecification(request.Name));
             var items = await this._artistAsyncRepository.ListAsync(
-                            new ArtistFilterPaginationSpecification(request.Name, request.Page, request.Page));
+                            new ArtistFilterPaginationSpecification(request.Name, request.Page, request.PageSize));
 
             var output = new QueryPaginatedResult<Artist> { Items = items, TotalItems = totalItems };
 

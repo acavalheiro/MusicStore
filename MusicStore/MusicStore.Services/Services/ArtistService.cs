@@ -9,8 +9,12 @@
 
 namespace MusicStore.Services
 {
+    using Artist;
     using Grpc.Core;
+    using MediatR;
     using Microsoft.Extensions.Logging;
+    using MusicStore.Business.Queries;
+    using System.Linq;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -18,18 +22,28 @@ namespace MusicStore.Services
     /// </summary>
     public class ArtistExtendedService : ArtistService.ArtistServiceBase
     {
-        private readonly ILogger<GreeterService> _logger;
+        private readonly ILogger<ArtistExtendedService> _logger;
 
-        public ArtistExtendedService(ILogger<GreeterService> logger)
+        private readonly IMediator _mediator;
+
+        public ArtistExtendedService(ILogger<ArtistExtendedService> logger, IMediator mediator)
         {
             this._logger = logger;
+            this._mediator = mediator;
         }
 
-        public override Task<ArtistListPaginatedResponse> ArtistListPaginate(ArtistListPaginatedRequest request, ServerCallContext context)
-        {
-            return base.ArtistListPaginate(request, context);
+        public async override Task<ArtistListPaginatedResponse> ArtistListPaginate(ArtistListPaginatedRequest request, ServerCallContext context)
+        {            
+            var output = new ArtistListPaginatedResponse();
 
-            var t = new ArtistListPaginatedResponse() { }
+            var result = await this._mediator.Send(new ArtistFilterPaginatedQuery{ Name = request.Name, Page = request.PageIndex, PageSize = request.PageSize });
+
+            output.TotalItems = result.TotalItems;
+
+            result.Items.ToList().ForEach(a => output.Items.Add(new ArtistItem { Name = a.Name }));
+
+            return output;
+            
         }
     }
 }

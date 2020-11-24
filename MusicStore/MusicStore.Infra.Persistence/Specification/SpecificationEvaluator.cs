@@ -55,6 +55,15 @@ namespace MusicStore.Infra.Persistence.Specification
 
             if (specification.IsPagingEnabled)
             {
+
+                if (specification.Skip != 0)
+                {
+                    query = query.Skip(specification.Skip);
+                }
+
+            
+
+
                 query = query.Skip(specification.Skip)
                     .Take(specification.Take);
             }

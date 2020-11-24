@@ -25,7 +25,8 @@ namespace MusicStore.Core.Specifications
         /// </param>
         public ArtistFilterSpecification(string name)
         {
-            this.AddWhere(i => i.Name.Contains(name));
+            if (!string.IsNullOrEmpty(name))
+                this.AddWhere(i => i.Name.Contains(name));
         }
     }
 
