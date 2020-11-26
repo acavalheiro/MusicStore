@@ -14,6 +14,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.artist.ArtistItem', null, global);
 goog.exportSymbol('proto.artist.ArtistListPaginatedRequest', null, global);
 goog.exportSymbol('proto.artist.ArtistListPaginatedResponse', null, global);
@@ -492,7 +494,8 @@ proto.artist.ArtistItem.prototype.toObject = function(opt_includeInstance) {
  */
 proto.artist.ArtistItem.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    dateofbirth: (f = msg.getDateofbirth()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -533,6 +536,11 @@ proto.artist.ArtistItem.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 2:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setDateofbirth(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -569,6 +577,14 @@ proto.artist.ArtistItem.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getDateofbirth();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -587,6 +603,43 @@ proto.artist.ArtistItem.prototype.getName = function() {
  */
 proto.artist.ArtistItem.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp dateOfBirth = 2;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.artist.ArtistItem.prototype.getDateofbirth = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.artist.ArtistItem} returns this
+*/
+proto.artist.ArtistItem.prototype.setDateofbirth = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.artist.ArtistItem} returns this
+ */
+proto.artist.ArtistItem.prototype.clearDateofbirth = function() {
+  return this.setDateofbirth(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.artist.ArtistItem.prototype.hasDateofbirth = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

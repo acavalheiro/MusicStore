@@ -40,7 +40,7 @@ namespace MusicStore.Services
 
             output.TotalItems = result.TotalItems;
 
-            result.Items.ToList().ForEach(a => output.Items.Add(new ArtistItem { Name = a.Name }));
+            result.Items.ToList().ForEach(a => output.Items.Add(new ArtistItem { Name = a.Name, DateOfBirth = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTimeOffset(a.DateOfBirth.ToUniversalTime()) }));
 
             return output;
             

@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 //option csharp_namespace = "ConsoleApp.Services";
 
 package artist;
@@ -26,6 +28,7 @@ message ArtistListPaginatedResponse {
 
 message ArtistItem {
 	string name = 1;
+	google.protobuf.Timestamp dateOfBirth = 2;
 	
 	
 }
