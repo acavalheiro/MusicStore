@@ -39,6 +39,8 @@
 
             services.AddScoped<IArtistAsyncRepository, ArtistAsyncRepository>();
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(ArtistFilterPaginatedQuery).Assembly);

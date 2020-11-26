@@ -27,8 +27,10 @@ message ArtistListPaginatedResponse {
 
 
 message ArtistItem {
-	string name = 1;
-	google.protobuf.Timestamp dateOfBirth = 2;
+	string id = 1;
+	string name = 2;
+	google.protobuf.Timestamp dateOfBirth = 3;
+	string artisticName = 4;
 	
 	
 }

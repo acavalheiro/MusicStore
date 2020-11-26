@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-
+import { Button } from 'reactstrap';
 import { ArtistListPaginatedRequest, ArtistListPaginatedResponse } from "../../Client/Artist/artist_pb";
 import { ArtistServiceClient } from '../../Client/Artist/artist_grpc_web_pb';
+
+import { Link } from 'react-router-dom';
 
 var client = new ArtistServiceClient('https://localhost:5001');
 
@@ -26,14 +28,16 @@ export class ListArtist extends Component {
                     <tr>
                         <th>Name</th>
                         <th>Date Of Birth</th>
+                        <th>Artistic Name</th>
 
                     </tr>
                 </thead>
                 <tbody>
                     {artists.map(artist =>
-                        <tr key={artist.name}>
+                        <tr key={artist.id}>
                             <td>{artist.name}</td>
-                            <td>{artist.dateOfBirth}</td>
+                            <td>{artist.dateOfBirth.toString()}</td>
+                            <td>{artist.artisticNamec}</td>
 
                         </tr>
                     )}
@@ -50,7 +54,7 @@ export class ListArtist extends Component {
         return (
             <div>
                 <h1 id="tabelLabel" >Artists</h1>
-
+                <Button tag={Link}  className="btn btn-primary" to="/artist-create">Create</Button>
                 {contents}
             </div>
         );
@@ -62,8 +66,15 @@ export class ListArtist extends Component {
         artistRequest.setPagesize(100);
         var stream = client.artistListPaginate(artistRequest, {}, (err, response) => {        
             
-            console.log(response.toObject());
-            this.setState({ artists: response.toObject().itemsList, loading: false });
+            //var items = response.getItemsList().map()
+           
+
+            var data = response.getItemsList().map( a => ({ id: a.getId(), name: a.getName(), dateOfBirth: a.getDateofbirth().toDate(), artisticName: a.getArtisticname()}));
+
+            // console.log(t);
+            // console.log(response.toObject());
+            // console.log(response);
+            this.setState({ artists: data, loading: false });
         });
 
        

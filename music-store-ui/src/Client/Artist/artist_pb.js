@@ -494,8 +494,10 @@ proto.artist.ArtistItem.prototype.toObject = function(opt_includeInstance) {
  */
 proto.artist.ArtistItem.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    dateofbirth: (f = msg.getDateofbirth()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    dateofbirth: (f = msg.getDateofbirth()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    artisticname: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -534,12 +536,20 @@ proto.artist.ArtistItem.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
+      msg.setId(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setDateofbirth(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setArtisticname(value);
       break;
     default:
       reader.skipField();
@@ -570,29 +580,43 @@ proto.artist.ArtistItem.prototype.serializeBinary = function() {
  */
 proto.artist.ArtistItem.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getName();
+  f = message.getId();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getDateofbirth();
   if (f != null) {
     writer.writeMessage(
-      2,
+      3,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getArtisticname();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
 
 
 /**
- * optional string name = 1;
+ * optional string id = 1;
  * @return {string}
  */
-proto.artist.ArtistItem.prototype.getName = function() {
+proto.artist.ArtistItem.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -601,18 +625,36 @@ proto.artist.ArtistItem.prototype.getName = function() {
  * @param {string} value
  * @return {!proto.artist.ArtistItem} returns this
  */
-proto.artist.ArtistItem.prototype.setName = function(value) {
+proto.artist.ArtistItem.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional google.protobuf.Timestamp dateOfBirth = 2;
+ * optional string name = 2;
+ * @return {string}
+ */
+proto.artist.ArtistItem.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.artist.ArtistItem} returns this
+ */
+proto.artist.ArtistItem.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp dateOfBirth = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.artist.ArtistItem.prototype.getDateofbirth = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
 
 
@@ -621,7 +663,7 @@ proto.artist.ArtistItem.prototype.getDateofbirth = function() {
  * @return {!proto.artist.ArtistItem} returns this
 */
 proto.artist.ArtistItem.prototype.setDateofbirth = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -639,7 +681,25 @@ proto.artist.ArtistItem.prototype.clearDateofbirth = function() {
  * @return {boolean}
  */
 proto.artist.ArtistItem.prototype.hasDateofbirth = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string artisticName = 4;
+ * @return {string}
+ */
+proto.artist.ArtistItem.prototype.getArtisticname = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.artist.ArtistItem} returns this
+ */
+proto.artist.ArtistItem.prototype.setArtisticname = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

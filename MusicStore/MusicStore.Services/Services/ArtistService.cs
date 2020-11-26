@@ -17,6 +17,9 @@ namespace MusicStore.Services
     using System.Linq;
     using System.Threading.Tasks;
 
+    using MusicStore.Business.Commands.Artists;
+    using MusicStore.Services.Mappers;
+
     /// <summary>
     /// The artist extended service.
     /// </summary>
@@ -32,7 +35,19 @@ namespace MusicStore.Services
             this._mediator = mediator;
         }
 
-        public async override Task<ArtistListPaginatedResponse> ArtistListPaginate(ArtistListPaginatedRequest request, ServerCallContext context)
+        /// <summary>
+        /// The artist list paginate.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <param name="context">
+        /// The context.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public override async Task<ArtistListPaginatedResponse> ArtistListPaginate(ArtistListPaginatedRequest request, ServerCallContext context)
         {            
             var output = new ArtistListPaginatedResponse();
 
@@ -40,10 +55,38 @@ namespace MusicStore.Services
 
             output.TotalItems = result.TotalItems;
 
-            result.Items.ToList().ForEach(a => output.Items.Add(new ArtistItem { Name = a.Name, DateOfBirth = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTimeOffset(a.DateOfBirth.ToUniversalTime()) }));
+            result.Items.ToList().ForEach(a => output.Items.Add(a.Map()));
 
             return output;
             
+        }
+
+        /// <summary>
+        /// The create artist.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <param name="context">
+        /// The context.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public override async Task<CreateArtistResponse> CreateArtist(CreateArtistRequest request, ServerCallContext context)
+        {
+            var output = new CreateArtistResponse();
+            var result = await this._mediator.Send(
+                             new ArtistCreateCommand
+                                 {
+                                     ArtisticName = request.Artist.ArtisticName,
+                                     Name = request.Artist.Name,
+                                     DateOfBirth = request.Artist.DateOfBirth.ToDateTime()
+                                 });
+
+            output.Sucess = result.Success;
+
+            return output;
         }
     }
 }

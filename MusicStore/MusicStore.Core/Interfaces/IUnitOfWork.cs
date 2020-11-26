@@ -9,6 +9,7 @@
 
 namespace MusicStore.Core.Interfaces
 {
+    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -17,11 +18,19 @@ namespace MusicStore.Core.Interfaces
     public interface IUnitOfWork
     {
         /// <summary>
-        /// The save changes asyn.
+        /// The save changes async.
         /// </summary>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
         Task SaveChangesAsync();
+
+        /// <summary>
+        /// The save changes asyn.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

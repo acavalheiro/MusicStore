@@ -1,26 +1,31 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="QueryResult.cs" company="">
+// <copyright file="Result.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   The query result.
+//   The result.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace MusicStore.Core.Results
 {
-    using System.Collections.Generic;
-
     using MusicStore.Core.Interfaces;
 
     /// <summary>
-    /// The query result.
+    /// The result.
     /// </summary>
-    /// <typeparam name="T">
+    /// <typeparam name="TData">
     /// </typeparam>
-    public class QueryResult<T> : IQueryResult<T>
-    where T : class
+    public class Result<TData> : Result, IResult<TData>
+    where TData : class
     {
-        public IEnumerable<T> Items { get; set; }
+        public TData Data { get; set; }
+    }
+    /// <summary>
+    /// The result.
+    /// </summary>
+    public class Result : IResult
+    {
+        public bool Success { get; set; }
     }
 }

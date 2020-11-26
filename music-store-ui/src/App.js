@@ -9,6 +9,7 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { ListArtist } from "./components/artist/List";
+import { CreateArtist } from "./components/artist/Create";
 
 
 export default class App extends Component {
@@ -21,6 +22,7 @@ export default class App extends Component {
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data' component={FetchData} />
         <Route path='/artist' component={ListArtist} />
+        <Route path='/artist-create' component={CreateArtist} />
       </Layout>
     );
   }
