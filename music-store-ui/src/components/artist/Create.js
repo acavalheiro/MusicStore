@@ -3,6 +3,15 @@ import { Form, FormGroup, Label, Input, Row, Col, Button } from 'react-bootstrap
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 
+import { ArtistServiceClient } from '../../Client/Artist/artist_grpc_web_pb';
+import { CreateArtistRequest, CreateArtistResponse, ArtistItem } from '../../Client/Artist/artist_pb';
+
+var pb = require('../../Client/Artist/artist_pb');
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+
+
+var client = new ArtistServiceClient('https://localhost:5001');
+
 export class CreateArtist extends Component {
     constructor(props) {
         super(props);
@@ -31,6 +40,23 @@ export class CreateArtist extends Component {
     }
 
     handleSubmit(event) {
+
+        const request = new CreateArtistRequest();
+
+        
+        var artist = new ArtistItem()
+        artist.setName(this.state.name);
+        const date = new google_protobuf_timestamp_pb.Timestamp();
+        date.fromDate(this.state.dateOfBirth.toDate());        
+        artist.setDateofbirth(date);
+        artist.setArtisticname(this.state.artisticName);
+        request.setArtist(artist);
+
+        var response = client.createArtist(request);
+
+        console.log(response);
+
+        
         alert('A name was submitted: ' + this.state.dateOfBirth);
         event.preventDefault();
     }

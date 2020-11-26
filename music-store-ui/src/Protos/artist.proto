@@ -9,6 +9,8 @@ package artist;
 service ArtistService {
 	// Sends a greeting
 	rpc ArtistListPaginate (ArtistListPaginatedRequest) returns (ArtistListPaginatedResponse);
+
+	rpc CreateArtist(CreateArtistRequest) returns (CreateArtistResponse);
 }
 
 // The request message containing the user's name.
@@ -30,7 +32,14 @@ message ArtistItem {
 	string id = 1;
 	string name = 2;
 	google.protobuf.Timestamp dateOfBirth = 3;
-	string artisticName = 4;
-	
-	
+	string artisticName = 4;		
+}
+
+
+message CreateArtistRequest {
+	ArtistItem artist = 1;
+}
+
+message CreateArtistResponse {
+	bool sucess = 1;
 }

@@ -1,4 +1,13 @@
-﻿namespace MusicStore.Services
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Startup.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Defines the Startup type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace MusicStore.Services
 {
     using System.Configuration;
     using System.Reflection;
@@ -73,7 +82,7 @@
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GreeterService>();
-                endpoints.MapGrpcService<ArtistExtendedService>().RequireCors("AllowAll");;
+                endpoints.MapGrpcService<ArtistExtendedService>().RequireCors("AllowAll"); ;
 
                 endpoints.MapGet("/", async context =>
                 {

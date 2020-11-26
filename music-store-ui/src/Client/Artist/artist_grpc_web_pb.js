@@ -152,5 +152,85 @@ proto.artist.ArtistServicePromiseClient.prototype.artistListPaginate =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.artist.CreateArtistRequest,
+ *   !proto.artist.CreateArtistResponse>}
+ */
+const methodDescriptor_ArtistService_CreateArtist = new grpc.web.MethodDescriptor(
+  '/artist.ArtistService/CreateArtist',
+  grpc.web.MethodType.UNARY,
+  proto.artist.CreateArtistRequest,
+  proto.artist.CreateArtistResponse,
+  /**
+   * @param {!proto.artist.CreateArtistRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.artist.CreateArtistResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.artist.CreateArtistRequest,
+ *   !proto.artist.CreateArtistResponse>}
+ */
+const methodInfo_ArtistService_CreateArtist = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.artist.CreateArtistResponse,
+  /**
+   * @param {!proto.artist.CreateArtistRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.artist.CreateArtistResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.artist.CreateArtistRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.artist.CreateArtistResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.artist.CreateArtistResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.artist.ArtistServiceClient.prototype.createArtist =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/artist.ArtistService/CreateArtist',
+      request,
+      metadata || {},
+      methodDescriptor_ArtistService_CreateArtist,
+      callback);
+};
+
+
+/**
+ * @param {!proto.artist.CreateArtistRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.artist.CreateArtistResponse>}
+ *     Promise that resolves to the response
+ */
+proto.artist.ArtistServicePromiseClient.prototype.createArtist =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/artist.ArtistService/CreateArtist',
+      request,
+      metadata || {},
+      methodDescriptor_ArtistService_CreateArtist);
+};
+
+
 module.exports = proto.artist;
 

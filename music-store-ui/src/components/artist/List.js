@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import { ArtistListPaginatedRequest, ArtistListPaginatedResponse } from "../../Client/Artist/artist_pb";
+import { ArtistListPaginatedRequest, ArtistListPaginatedResponse , ArtistItem } from "../../Client/Artist/artist_pb";
 import { ArtistServiceClient } from '../../Client/Artist/artist_grpc_web_pb';
 
 import { Link } from 'react-router-dom';
@@ -37,7 +37,7 @@ export class ListArtist extends Component {
                         <tr key={artist.id}>
                             <td>{artist.name}</td>
                             <td>{artist.dateOfBirth.toString()}</td>
-                            <td>{artist.artisticNamec}</td>
+                            <td>{artist.artisticName}</td>
 
                         </tr>
                     )}
